@@ -28,12 +28,12 @@ return new class extends Migration
 
             $table->enum('status', ['pending_verification', 'verified', 'rejected', 'cancelled'])->default('pending_verification');
 
-            $table->timestampsTz('verified_at')->nullable();
+            $table->timestampTz('verified_at')->nullable();
             $table->text('verification_notes')->nullable();
             $table->text('rejection_reason')->nullable();
             $table->text('cancellation_reason')->nullable();
             $table->foreignId('cancelled_by')->nullable()->constrained('users')->nullOnDelete();
-            $table->timestampsTz('cancelled_at')->nullable();
+            $table->timestampTz('cancelled_at')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

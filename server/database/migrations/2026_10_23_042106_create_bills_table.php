@@ -30,7 +30,7 @@ return new class extends Migration
             $table->text('discount_reason')->nullable();
             $table->foreignId('discount_by')->nullable()->constrained('users')->nullOnDelete();
             $table->enum('status', ['draft', 'unpaid', 'partial', 'paid', 'canceled'])->default('draft');
-            $table->timestampsTz('published_at')->nullable();
+            $table->timestampTz('published_at')->nullable();
             $table->foreignId('created_by')->constrained('users')->restrictOnDelete();
             $table->foreignId('cancelled_by')->nullable()->constrained('users')->nullOnDelete();
             $table->text('cancellation_reason')->nullable();

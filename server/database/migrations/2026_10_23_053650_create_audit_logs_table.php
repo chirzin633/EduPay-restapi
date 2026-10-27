@@ -36,7 +36,6 @@ return new class extends Migration
             $table->index('action');
             $table->index(['subject_type', 'subject_id']);
             $table->index('action_at');
-            $table->index('created_at');
         });
     }
 

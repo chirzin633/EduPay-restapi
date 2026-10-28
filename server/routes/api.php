@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BillController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\RefundController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -18,5 +19,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [PaymentController::class, 'store']);
         Route::post('/{paymentId}/verify', [PaymentController::class, 'verify']);
         Route::post('/{paymentId}/reject', [PaymentController::class, 'reject']);
+    });
+
+    // Refunds
+    Route::prefix('refunds')->group(function () {
+        Route::post('/', [RefundController::class, 'store']);
+        Route::post('/{refundId}/submit', [RefundController::class, 'submit']);
+        Route::post('/{refundId}/approve', [RefundController::class, 'approve']);
+        Route::post('/{refundId}/reject', [RefundController::class, 'reject']);
+        Route::post('/{refundId}/complete', [RefundController::class, 'complete']);
     });
 });

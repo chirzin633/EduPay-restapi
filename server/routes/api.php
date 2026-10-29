@@ -49,6 +49,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('payment-cancellations')->group(function () {
         Route::post('/{cancellationId}/approve', [PaymentCancellationController::class, 'approve']);
-        Route::post('/{cancellationId/reject}', [PaymentCancellationController::class, 'reject']);
+        Route::post('/{cancellationId}/reject', [PaymentCancellationController::class, 'reject']);
     });
 });

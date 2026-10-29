@@ -29,7 +29,7 @@ class RefundController extends Controller
         ], 201);
     }
 
-    public function submint($refundId)
+    public function submit($refundId)
     {
         $refund = $this->refundService->submitForApproval($refundId, Auth::id());
 
@@ -44,7 +44,7 @@ class RefundController extends Controller
         $refund = $this->refundService->approve(
             refundId: $refundId,
             approverId: Auth::id(),
-            notes: $request->validated('notes')
+            notes: $request->input('notes')
         );
 
         return response()->json([
@@ -58,7 +58,7 @@ class RefundController extends Controller
         $refund = $this->refundService->reject(
             refundId: $refundId,
             rejectorId: Auth::id(),
-            reason: $request->validated('reason')
+            reason: $request->input('reason')
         );
 
         return response()->json([
@@ -72,8 +72,8 @@ class RefundController extends Controller
         $refund = $this->refundService->complete(
             refundId: $refundId,
             completerId: Auth::id(),
-            reference: $request->validated('completion_reference'),
-            notes: $request->validated('notes')
+            reference: $request->input('completion_reference'),
+            notes: $request->input('notes')
         );
 
         return response()->json([

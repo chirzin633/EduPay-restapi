@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BillController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\RefundController;
+use App\Http\Controllers\Api\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -28,5 +29,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/{refundId}/approve', [RefundController::class, 'approve']);
         Route::post('/{refundId}/reject', [RefundController::class, 'reject']);
         Route::post('/{refundId}/complete', [RefundController::class, 'complete']);
+    });
+
+    // Students
+    Route::prefix('students')->group(function () {
+        Route::get('/', [StudentController::class, 'index']);
+        Route::post('/import', [StudentController::class, 'import']);
+        Route::post('/', [StudentController::class, 'store']);
+        Route::get('/{student}', [StudentController::class, 'show']);
+        Route::put('/{student}', [StudentController::class, 'update']);
+        Route::post('/{student}/change-status', [StudentController::class, 'changeStatus']);
     });
 });

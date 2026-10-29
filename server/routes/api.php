@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BillController;
+use App\Http\Controllers\Api\PaymentCancellationController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\RefundController;
 use App\Http\Controllers\Api\StudentController;
@@ -39,5 +40,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{student}', [StudentController::class, 'show']);
         Route::put('/{student}', [StudentController::class, 'update']);
         Route::post('/{student}/change-status', [StudentController::class, 'changeStatus']);
+    });
+
+    // Payment Canellation
+    Route::prefix('/payments/{paymentId}/cancel')->group(function () {
+        Route::post('/', [PaymentCancellationController::class, 'store']);
+    });
+
+    Route::prefix('payment-cancellations')->group(function () {
+        Route::post('/{cancellationId}/approve', [PaymentCancellationController::class, 'approve']);
+        Route::post('/{cancellationId/reject}', [PaymentCancellationController::class, 'reject']);
     });
 });
